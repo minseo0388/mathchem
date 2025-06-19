@@ -1,5 +1,5 @@
 # mathchem
-수리 및 계산화학 python 구현 라이브러리
+수리 및 계산화학 python 구현 라이브러리<br>
 Mathematical and Computational Chemistry Lecture Implementation Library written in Python<br>
 25H1 수리 및 계산화학 강의 구현(충남대학교 화학과)
 
