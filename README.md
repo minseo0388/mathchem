@@ -1,10 +1,13 @@
 # mathchem
 수리 및 계산화학 python 구현 라이브러리<br>
 Mathematical and Computational Chemistry Lecture Implementation Library written in Python<br>
-25H1 수리 및 계산화학 강의 구현(충남대학교 화학과)
+25H1 수리 및 계산화학 강의 구현(충남대학교 화학과)<br>
+This project is used as a library for performing molecular orbital calculations and visualizing results in the field of chemistry.<br>
+This will be uploaded to PyPI in the future.
 
-Choi Minseo
-Sophomore (2025), Dept. of Chemistry<br>
+Choi Minseo<br>
+Sophomore (2025)<br>
+Dept. of Chemistry<br>
 College of Natural Sciences<br>
 Chungnam National University<br>
 Daejeon, Republic of Korea
@@ -16,10 +19,6 @@ This project implements various methods in mathematical and computational chemis
 - Particle in a Box model
 - Visualization of results
 - Basic linear algebra operations
-
-## Library
-This project is used as a library for performing molecular orbital calculations and visualizing results in the field of chemistry.
-This will be uploaded to PyPI in the future.
 
 ```bash
 pip install cnumathchem
