@@ -1,39 +1,40 @@
 # variationtheory.py
-# This file contains the implementation of the Variation Theory method for molecular orbital calculations.
+# Variation Theory for molecular orbital calculations.
 
 import numpy as np
 from scipy.linalg import eigh
+from typing import Optional, Tuple
 
 class VariationTheory:
-    def __init__(self, H, S=None):
-        """
-        Variation Theory for Molecular Orbital Calculations
-        This class implements the Variation Theory method for solving the generalized eigenvalue problem.
+    """
+    Variation Theory for Molecular Orbital Calculations.
 
-        Parameters:
-            H: Hamiltonian Array (n by n)
-            S: Overlapped Array (n by n). If not provided, identity matrix is used.
-        """
+    Parameters:
+        H: Hamiltonian matrix (n x n)
+        S: Overlap matrix (n x n), defaults to identity if not provided.
+    """
+    def __init__(self, H, S: Optional[np.ndarray] = None):
         self.H = np.array(H, dtype=float)
+        if self.H.ndim != 2 or self.H.shape[0] != self.H.shape[1]:
+            raise ValueError("Hamiltonian matrix must be square.")
         if S is None:
             self.S = np.eye(self.H.shape[0])
         else:
             self.S = np.array(S, dtype=float)
+            if self.S.shape != self.H.shape:
+                raise ValueError("Overlap matrix must match Hamiltonian shape.")
 
-    def solve(self):
+    def solve(self) -> Tuple[np.ndarray, np.ndarray]:
         """
-        Solve the generalized eigenvalue problem H c = E S c
-
-        Parameters:
-            E: Eigenvalue (molecular orbital energies)
-            C: Eigenvector (molecular orbital coefficients)
+        Solve the generalized eigenvalue problem H c = E S c.
 
         Returns:
-            Energies: Eigenvalues (molecular orbital energies)
-            Coefficients: Eigenvectors (molecular orbital coefficients)
+            Energies: Eigenvalues (MO energies)
+            Coefficients: Eigenvectors (MO coefficients)
         """
         E, C = eigh(self.H, self.S)
         idx = np.argsort(E)
         self.energy = E[idx]
         self.coeff = C[:, idx]
         return self.energy, self.coeff
+    
