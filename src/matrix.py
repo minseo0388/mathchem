@@ -1,47 +1,106 @@
-# matrix.py
-# This file contains the implementation of a matrix class for basic linear algebra calculations.
-# Some imported from Naesungmath (https://github.com/minseo0388/naesungmath)
+"""
+matrix.py
+
+This module provides a Matrix class for various linear algebra operations
+commonly used in mathematical chemistry calculations. Some functions are adapted 
+from Naesungmath (https://github.com/minseo0388/naesungmath).
+
+Author: Choi Minseo
+Date: 2025
+"""
 
 import numpy as np
+from typing import Union, List, Tuple, Optional, Any
+import warnings
+
+# Type aliases for clarity
+Vector = Union[List[float], np.ndarray]
+MatrixType = Union[List[List[float]], np.ndarray]
 
 class Matrix:
-    def vector(self, v):
+    """
+    A utility class for matrix operations in mathematical chemistry.
+    
+    This class provides various methods for matrix manipulations, transformations,
+    and calculations relevant to quantum chemistry and computational chemistry.
+    
+    Notes:
+        - Most methods use numpy for efficient computation
+        - Matrices are represented as 2D numpy arrays
+        - Vectors are represented as 1D numpy arrays
+    """
+    def vector(self, v: Vector) -> np.ndarray:
         """
-        Convert a list or numpy array to a numpy array.
+        Convert a list or numpy array to a numpy array with float data type.
         
         Parameters:
-            v: List or numpy array.
+            v: Input vector or list of values
         
         Returns:
-            Numpy array.
+            Numpy array representation with float data type
+            
+        Examples:
+            >>> m = Matrix()
+            >>> m.vector([1, 2, 3])
+            array([1., 2., 3.])
         """
         return np.array(v, dtype=float)
     
-    def add(self, A, B):
+    def add(self, A: MatrixType, B: MatrixType) -> np.ndarray:
         """
         Add two matrices or vectors.
         
         Parameters:
-            A: First matrix or vector.
-            B: Second matrix or vector.
+            A: First matrix or vector
+            B: Second matrix or vector
         
         Returns:
-            Sum of A and B as a numpy array.
+            Sum of A and B as a numpy array
+            
+        Raises:
+            ValueError: If the dimensions of A and B are incompatible
+            
+        Examples:
+            >>> m = Matrix()
+            >>> m.add([[1, 2], [3, 4]], [[5, 6], [7, 8]])
+            array([[ 6.,  8.],
+                   [10., 12.]])
         """
-        return np.add(self.vector(A), self.vector(B))
+        A_array = self.vector(A)
+        B_array = self.vector(B)
+        
+        if A_array.shape != B_array.shape:
+            raise ValueError(f"Incompatible shapes for addition: {A_array.shape} and {B_array.shape}")
+            
+        return np.add(A_array, B_array)
     
-    def subtract(self, A, B):
+    def subtract(self, A: MatrixType, B: MatrixType) -> np.ndarray:
         """
         Subtract two matrices or vectors.
         
         Parameters:
-            A: First matrix or vector.
-            B: Second matrix or vector.
+            A: First matrix or vector
+            B: Second matrix or vector
         
         Returns:
-            Difference of A and B as a numpy array.
+            Difference of A and B as a numpy array
+            
+        Raises:
+            ValueError: If the dimensions of A and B are incompatible
+            
+        Examples:
+            >>> m = Matrix()
+            >>> m.subtract([[1, 2], [3, 4]], [[5, 6], [7, 8]])
+            array([[-4., -4.],
+                   [-4., -4.]])
         """
-        return np.subtract(self.vector(A), self.vector(B))
+        A_array = self.vector(A)
+        B_array = self.vector(B)
+        
+        if A_array.shape != B_array.shape:
+            raise ValueError(f"Incompatible shapes for subtraction: {A_array.shape} and {B_array.shape}")
+            
+        return np.subtract(A_array, B_array)
     
     def multiply(self, A, B):
         """
