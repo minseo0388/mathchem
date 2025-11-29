@@ -13,7 +13,7 @@ import numpy as np
 from mpl_toolkits.mplot3d import Axes3D
 from typing import Union, Tuple, List, Optional, Any
 import matplotlib.cm as cm
-from src.particle import ParticleInABox1D, ParticleInABox2D
+from cnumathchem.particle import ParticleInABox1D, ParticleInABox2D
 
 def plot_wavefunction_1d(particle: ParticleInABox1D, n: int, x: np.ndarray, 
                        show_probability: bool = False, figwidth: float = 10, figlength: float = 6) -> plt.Figure:

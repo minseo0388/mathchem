@@ -2,7 +2,10 @@
 # Try free
 
 import numpy as np
-from src.huckelapprox import Huckel
+import sys
+import os
+sys.path.append(os.path.abspath('src'))
+from cnumathchem.huckelapprox import Huckel
 
 # Adjacency matrix for the benzene molecule (C6H6)
 adj_benzene = [
@@ -29,7 +32,7 @@ if __name__ == "__main__":
     print("Total π energy:", np.round(mol.total_pi_energy(6), 4))
 
 
-from src.particle import ParticleInABox1D, ParticleInABox2D, Rotational2D, TunnelingBarrier
+from cnumathchem.particle import ParticleInABox1D, ParticleInABox2D, Rotational2D, TunnelingBarrier
 import numpy as np
 
 if __name__ == "__main__":

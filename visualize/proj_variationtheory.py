@@ -11,7 +11,7 @@ Date: 2025
 
 import matplotlib.pyplot as plt
 import numpy as np
-from src.variationtheory import VariationTheory
+from cnumathchem.variationtheory import VariationTheory
 from typing import Union, Tuple, List, Optional, Dict, Any
 
 def plot_energy_levels(H: np.ndarray, S: Optional[np.ndarray] = None,

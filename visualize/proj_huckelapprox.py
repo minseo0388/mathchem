@@ -10,7 +10,7 @@ Date: 2025
 
 import matplotlib.pyplot as plt
 import numpy as np
-from src.huckelapprox import Huckel
+from cnumathchem.huckelapprox import Huckel
 from typing import List, Tuple, Optional, Union, Dict, Any
 import warnings
 

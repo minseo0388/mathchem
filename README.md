@@ -17,6 +17,7 @@ This project implements various methods in mathematical and computational chemis
 - Huckel approximation
 - Variation Theory
 - Particle in a Box model
+- Stoichiometry (Molar mass calculation)
 - Visualization of results
 - Basic linear algebra operations
 
@@ -48,16 +49,19 @@ Exact usage is provided in example/example.py.
 
 For example:
 ```python
-from cnumathchem import huckelapprox, variationtheory
+from cnumathchem.huckelapprox import Huckel
+from cnumathchem.variationtheory import VariationTheory
+from cnumathchem.stoichiometry import Stoichiometry
 
 # Perform Huckel approximation
-results = huckelapprox.solve(...)
+# ... (setup code)
+results = Huckel(adj_matrix).solve()
 
-# Perform Variation Theory calculations
-results = variationtheory.solve(...)
+# Calculate Molar Mass
+mass = Stoichiometry.calculate_molar_mass("C6H12O6")
+print(f"Molar Mass: {mass} g/mol")
 
 # Visualize results
-from cnumathchem.visualize import proj_huckelapprox, proj_variationtheory
-proj_huckelapprox.plot_molecular_orbitals(results)
-proj_variationtheory.plot_variation_theory(results)
+# Note: Visualization modules are currently separate scripts in the visualize/ directory
+# but can be adapted for library use.
 ```
