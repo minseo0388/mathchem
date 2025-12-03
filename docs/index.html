@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>mathchem | Python Library for Computational Chemistry</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+</head>
+<body>
+    <div class="background-glow"></div>
+    
+    <nav class="sidebar">
+        <div class="logo">
+            <h1>mathchem</h1>
+            <span class="version">v0.1.0</span>
+        </div>
+        <div class="search-container">
+            <input type="text" id="search-input" placeholder="Search functions...">
+            <div class="search-icon">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            </div>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#introduction" class="active">Introduction</a></li>
+            <li><a href="#installation">Installation</a></li>
+            <li><a href="#huckel">Hückel Approximation</a></li>
+            <li><a href="#variation">Variation Theory</a></li>
+            <li><a href="#particle">Particle in a Box</a></li>
+            <li><a href="#stoichiometry">Stoichiometry</a></li>
+        </ul>
+    </nav>
+
+    <main class="content">
+        <section id="introduction" class="section">
+            <h2>Introduction</h2>
+            <p class="lead">A powerful Python library for mathematical and computational chemistry, designed for students and researchers.</p>
+            <p><strong>mathchem</strong> provides intuitive implementations of fundamental quantum chemistry models and utility functions for chemical calculations.</p>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <h3>Quantum Models</h3>
+                    <p>Hückel MO theory, Particle in a Box, and Variation Theory implementations.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Stoichiometry</h3>
+                    <p>Easy molar mass calculations and chemical formula parsing.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Visualization</h3>
+                    <p>Built-in tools to visualize wavefunctions and energy levels.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="installation" class="section">
+            <h2>Installation</h2>
+            <div class="code-block-wrapper">
+                <pre><code class="language-bash">pip install cnumathchem</code></pre>
+                <button class="copy-btn">Copy</button>
+            </div>
+            <p>Or install from source:</p>
+            <div class="code-block-wrapper">
+                <pre><code class="language-bash">git clone https://github.com/minseo0388/mathchem.git
+cd mathchem
+pip install -r requirements.txt</code></pre>
+            </div>
+        </section>
+
+        <section id="huckel" class="section search-target" data-keywords="huckel mo energy solve benzene">
+            <h2>Hückel Approximation</h2>
+            <p>Calculate molecular orbital energies and coefficients for conjugated systems.</p>
+            
+            <h3>Usage</h3>
+            <div class="code-block-wrapper">
+                <pre><code class="language-python">from cnumathchem.huckelapprox import Huckel
+import numpy as np
+
+# Adjacency matrix for Benzene
+adj_benzene = [
+    [0,1,0,0,0,1],
+    [1,0,1,0,0,0],
+    [0,1,0,1,0,0],
+    [0,0,1,0,1,0],
+    [0,0,0,1,0,1],
+    [1,0,0,0,1,0],
+]
+
+mol = Huckel(adj_benzene)
+energies, coeffs = mol.solve()
+
+print("MO Energies:", np.round(energies, 4))
+print("Total π energy:", np.round(mol.total_pi_energy(6), 4))</code></pre>
+            </div>
+        </section>
+
+        <section id="variation" class="section search-target" data-keywords="variation theory trial function hamiltonian">
+            <h2>Variation Theory</h2>
+            <p>Approximate ground state energies using the variational method.</p>
+            <div class="code-block-wrapper">
+                <pre><code class="language-python">from cnumathchem.variationtheory import VariationTheory
+
+# Example usage (conceptual)
+# Define your Hamiltonian and trial function
+# vt = VariationTheory(hamiltonian, trial_func)
+# energy = vt.minimize()</code></pre>
+            </div>
+        </section>
+
+        <section id="particle" class="section search-target" data-keywords="particle box 1d 2d rotation tunneling spectrum">
+            <h2>Particle in a Box & Others</h2>
+            <p>Solve Schrödinger equation for standard potentials.</p>
+            
+            <h3>1D Particle in a Box</h3>
+            <div class="code-block-wrapper">
+                <pre><code class="language-python">from cnumathchem.particle import ParticleInABox1D
+
+box1 = ParticleInABox1D(L=1.0, m_eff=1.0)
+ns, Es1 = box1.spectrum(5)
+print("Energies:", Es1)</code></pre>
+            </div>
+
+            <h3>2D Particle in a Box</h3>
+            <div class="code-block-wrapper">
+                <pre><code class="language-python">from cnumathchem.particle import ParticleInABox2D
+
+box2 = ParticleInABox2D(Lx=1.0, Ly=2.0, m_eff=1.0)
+levels = box2.spectrum(3, 3)</code></pre>
+            </div>
+        </section>
+
+        <section id="stoichiometry" class="section search-target" data-keywords="stoichiometry molar mass formula molecular weight">
+            <h2>Stoichiometry</h2>
+            <p>Calculate molar masses from chemical formulas.</p>
+            <div class="code-block-wrapper">
+                <pre><code class="language-python">from cnumathchem.stoichiometry import Stoichiometry
+
+mass = Stoichiometry.calculate_molar_mass("C6H12O6")
+print(f"Molar Mass of Glucose: {mass} g/mol")</code></pre>
+            </div>
+        </section>
+    </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
